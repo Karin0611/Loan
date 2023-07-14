@@ -26,13 +26,13 @@ export default class MiniSlider extends Slider {
 
     nextSlide() {
         if (this.slides[1].tagName === "BUTTON" && this.slides[2].tagName === "BUTTON") {
-            this.container.appendChild(this.slides[0]); // Slide
-            this.container.appendChild(this.slides[1]); // Btn
-            this.container.appendChild(this.slides[2]); // Btn
+            this.container.appendChild(this.slides[0]);
+            this.container.appendChild(this.slides[1]);
+            this.container.appendChild(this.slides[2]);
             this.decorizeSlides();
         } else if (this.slides[1].tagName === "BUTTON"){
-            this.container.appendChild(this.slides[0]); // Slide
-            this.container.appendChild(this.slides[1]); // Btn
+            this.container.appendChild(this.slides[0]);
+            this.container.appendChild(this.slides[1]);
             this.decorizeSlides();
         } else {
             this.container.appendChild(this.slides[0]);
@@ -59,18 +59,20 @@ export default class MiniSlider extends Slider {
     }
 
     init() {
-        this.container.style.cssText = `
+       try {
+           this.container.style.cssText = `
             display: flex;
             flex-wrap: wrap;
             overflow: hidden;
             align-items: flex-start;
         `;
 
-        this.bindTriggers();
-        this.decorizeSlides();
+           this.bindTriggers();
+           this.decorizeSlides();
 
-        if (this.autoplay) {
-            setInterval(() => this.nextSlide(), 5000);
-        }
+           if (this.autoplay) {
+               setInterval(() => this.nextSlide(), 5000);
+           }
+       }catch (e) {}
     }
 }
